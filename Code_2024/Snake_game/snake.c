@@ -60,7 +60,6 @@ void CreateMap()
 		wprintf(L"%lc", L'□');
 	}
 
-	getchar();
 }
 
 void GameStart(pSnake ps)
@@ -80,7 +79,19 @@ void GameStart(pSnake ps)
 	//2. 绘制地图
 	CreateMap();
 	//3. 创建蛇
+	//InitSnake(ps);
 	//4. 创建食物
 
 	//5. 设置游戏的相关信息
+}
+
+void GameRun(pSnake ps)
+{
+	SetPos(70, 10);
+	wprintf(L"贪吃蛇小游戏");
+	SetPos(65, 12);
+	wprintf(L"按↑ ↓ ← →来控制蛇的移动");
+	SetPos(68, 14);
+	wprintf(L"按F3加速，F4减速");
+	getchar();
 }

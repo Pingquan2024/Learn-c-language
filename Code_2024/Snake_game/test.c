@@ -26,7 +26,7 @@ void test()
 	GameStart(&snake);
 
 	//运行游戏
-	//GameRun();
+	GameRun(&snake);
 	//结束游戏
 	//GameEend();
 }

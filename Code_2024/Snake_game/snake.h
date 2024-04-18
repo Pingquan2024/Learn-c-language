@@ -53,10 +53,45 @@ typedef struct Snake
 }Snake, * pSnake;
 
 //函数的声明
+
+//定位光标位置
+void SetPos(short x, short y);
+
 //游戏的初始化
 void GameStart(pSnake ps);
+
 //欢迎界面的打印
 void WelcomeToGame();
 
 //创建地图
 void CreateMap();
+
+//初始化蛇身
+void InitSnake(pSnake ps);
+
+//创建食物
+void CreateFood(pSnake ps);
+
+//游戏运行的逻辑
+void GameRun(pSnake ps);
+
+//蛇的移动-走一步
+void SnakeMove(pSnake ps);
+
+//判断下一个坐标是否是食物
+int NextIsFood(pSnakeNode pn, pSnake ps);
+
+//下一个位置是食物，就吃掉食物
+void EatFood(pSnakeNode pn, pSnake ps);
+
+//下一个位置不是食物
+void NoFood(pSnakeNode pn, pSnake ps);
+
+//检测蛇是否撞墙
+void KillByWall(pSnake ps);
+
+//检测蛇是否撞到自己
+void KillBySelf(pSnake ps);
+
+//游戏善后的工作
+void GameEnd(pSnake ps);
