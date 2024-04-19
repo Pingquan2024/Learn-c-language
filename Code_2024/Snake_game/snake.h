@@ -5,6 +5,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <locale.h>
+#include <time.h>
+
+#define POS_X 24
+#define POS_Y 5
+
+#define WALL L'□'
+#define BODY L'●'
+#define FOOD L'★'
+#define SNAKELENGTH 5
 
 //类型的声明
 

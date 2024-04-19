@@ -36,30 +36,115 @@ void CreateMap()
 	int i = 0;
 	for (i = 0; i < 29; i++)
 	{
-		wprintf(L"%lc", L'□');
+		wprintf(L"%lc", WALL);
 	}
 
 	//下
 	SetPos(0, 26);
 	for (i = 0; i < 29; i++)
 	{
-		wprintf(L"%lc", L'□');
+		wprintf(L"%lc", WALL);
 	}
 
 	//左
 	for (i = 1; i <= 25; i++)
 	{
 		SetPos(0, i);
-		wprintf(L"%lc", L'□');
+		wprintf(L"%lc", WALL);
 	}
 
 	//右
 	for (i = 1; i <= 25; i++)
 	{
 		SetPos(56, i);
-		wprintf(L"%lc", L'□');
+		wprintf(L"%lc", WALL);
 	}
 
+}
+
+void InitSnake(pSnake ps)
+{
+	pSnakeNode cur = NULL;
+	for (int i = 0; i < SNAKELENGTH; i++)
+	{
+		cur = (pSnakeNode)malloc(sizeof(SnakeNode));
+		if (cur == NULL)
+		{
+			perror("InitSnake()::malloc");
+			return;
+		}
+
+		cur->next = NULL;
+		cur->x = POS_X + 2;
+		cur->y = POS_Y;
+		//头插
+		if (ps->_pSnake == NULL)  //空链表
+		{
+			ps->_pSnake = cur;
+		}
+		else //非空
+		{
+			cur->next = ps->_pSnake;
+			ps->_pSnake = cur;
+		}
+	}
+
+	cur = ps->_pSnake;
+	while (cur != NULL)
+	{
+		SetPos(cur->x, cur->y);
+		wprintf(L"%lc", BODY);
+		cur = cur->next;
+	}
+
+	//设置贪吃蛇属性
+	ps->_dir = RIGHT;       //默认向右
+	ps->_status = OK;
+	ps->_score = 0;
+	ps->_food_weight = 10;
+	ps->_sleep_time = 200;  //单位毫秒
+}
+
+void CreateFood(pSnake ps)
+{
+	int x = 0;
+	int y = 0;
+
+	//生成x是2的倍数
+	//x：2~54  y: 1~25
+again:
+	do
+	{
+		x = rand() % 53 + 2;
+		y = rand() % 25 + 1;
+	} while (x % 2 != 0);
+
+	pSnakeNode cur = ps->_pSnake;
+	while (cur)
+	{
+		if (x == cur->x || y == cur->y)
+		{
+			goto again;
+		}
+		cur = cur->next;
+	}
+
+	//创建食物的节点
+	pSnakeNode pFood = (pSnakeNode)malloc(sizeof(SnakeNode));
+	if (pFood == NULL)
+	{
+		perror("CreateFood::malloc");
+		return;
+	}
+
+	pFood->x = x;
+	pFood->y = y;
+	pFood->next = NULL;
+
+	SetPos(x, y);//定位位置
+	wprintf(L"%lc", FOOD);
+
+	ps->_pFood = pFood;
 }
 
 void GameStart(pSnake ps)
@@ -79,9 +164,9 @@ void GameStart(pSnake ps)
 	//2. 绘制地图
 	CreateMap();
 	//3. 创建蛇
-	//InitSnake(ps);
+	InitSnake(ps);
 	//4. 创建食物
-
+	CreateFood(ps);
 	//5. 设置游戏的相关信息
 }
 
