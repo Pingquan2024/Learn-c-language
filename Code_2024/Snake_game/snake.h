@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdbool.h>
-#include <Windows.h>
+#include <windows.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <locale.h>
