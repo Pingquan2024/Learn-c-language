@@ -41,7 +41,6 @@ void test_contact1()
 		case SORT:
 			//SortContcat(&con);
 
-
 			break;
 		case EXIT:
 			printf("�˳�ͨѶ¼\n");
