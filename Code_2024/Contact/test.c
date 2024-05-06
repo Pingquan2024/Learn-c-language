@@ -1,7 +1,8 @@
 #include "contact.h"
 
-menu()
+void menu()
 {
+	printf("\n");
 	printf("*********************************\n");
 	printf("***    1.add       2.del      ***\n");
 	printf("***    3.search    4.modify   ***\n");
@@ -12,15 +13,16 @@ menu()
 
 void test_contact1()
 {
-	menu();
 	int input = 0;
 	//首先要有通讯录
 	Contact con;    //con为结构体变量
 	InitContact(&con);
 	do
 	{
+		menu();
 		printf("请选择>：");
 		scanf("%d", &input);
+		system("cls");
 		switch (input)
 		{
 		case ADD:
@@ -39,10 +41,11 @@ void test_contact1()
 			ShowContact(&con);
 			break;
 		case SORT:
-			//SortContcat(&con);
-
+			SortContact(&con);
 			break;
 		case EXIT:
+			SaveContact(&con);
+			DestroyContact(&con);
 			printf("退出通讯录\n");
 			break;
 		default:

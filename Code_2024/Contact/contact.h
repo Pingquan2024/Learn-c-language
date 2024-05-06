@@ -12,9 +12,12 @@
 #define MAX_TELE 12
 #define MAX_ADDR 30
 
+#define DEFAULT_SIZE 3
+#define INC_SZ 2
+
 enum OPTIONS
 {
-	EXIT,               //0
+	EXIT,                //0
 	ADD,
 	DEL,
 	SEARCH,
@@ -23,23 +26,31 @@ enum OPTIONS
 	SORT
 };
 
-typedef struct PeoInfo   //PeoInfo为结构体名称
+typedef struct PeoInfo     //PeoInfo为结构体名称
 {
 	char name[MAX_NAME];
 	char sex[MAX_SEX];
 	int age;
 	char tele[MAX_TELE];
 	char addr[MAX_ADDR];
-}PeoInfo;               //PeoInfo为typedef的名字
+}PeoInfo;                  //PeoInfo为typedef的名字
 
-//静态版本
-typedef struct Contact   //Contact为结构体名称
+////静态版本
+//typedef struct Contact   //Contact为结构体名称
+//{
+//	PeoInfo data[MAX];
+//	int size;
+//}Contact;
+
+//动态的版本
+typedef struct Contact
 {
-	PeoInfo data[MAX];
-	int size;
+	PeoInfo* data;          //指向存储数据的空间
+	int size;               //记录当前放的有效元素个数
+	int capacity;           //通讯录当前的最大容量
 }Contact;
 
-//函数声明
+         /*函数声明*/
 
 //初始化通讯录
 void InitContact(Contact* pc);
@@ -59,5 +70,11 @@ void ModifyContact(Contact* pc);
 //显示联系人
 void ShowContact(Contact* pc);
 
-//按年龄排序
+//按名字排序
 void SortContact(Contact* pc);
+
+//销毁通讯录
+void DestroyContact(Contact* pc);
+
+//保存通讯录信息到文件
+void SaveContact(Contact* pc);
