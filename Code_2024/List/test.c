@@ -57,9 +57,32 @@ void TestList2()
 	plist = NULL;
 }
 
+void TestList3()
+{
+	LTNode* plist = LTInit();
+	LTPushFront(plist, 1);
+	LTPushFront(plist, 2);
+	LTPushFront(plist, 3);
+	LTPushFront(plist, 4);
+	LTPrint(plist);
+
+	LTNode* pos = LTFind(plist, 3);
+	if (pos)
+	{
+		LTInsert(pos, 30);
+	}
+	LTPrint(plist);
+
+	LTDestroy(plist);
+	plist = NULL;
+}
+
+
 int main()
 {
 	//TestList1();
-	TestList2();
+	//TestList2();
+
+	TestList3();
 	return 0;
 }

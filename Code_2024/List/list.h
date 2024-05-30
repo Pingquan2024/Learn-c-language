@@ -36,3 +36,7 @@ void LTPopBack(LTNode* phead);
 void LTPopFront(LTNode* phead);
 
 void LTDestroy(LTNode* phead);
+
+LTNode* LTFind(LTNode* head, LTDataType val);
+
+void LTInsert(LTNode* pos, LTDataType val);

@@ -86,6 +86,7 @@ void LTPushFront(LTNode* phead, LTDataType x)
 	newnode->prev = phead;
 }
 
+
 void LTPopBack(LTNode* phead)
 {
 	assert(phead);
@@ -125,4 +126,55 @@ void LTDestroy(LTNode* phead)
 	}
 
 	free(phead);
+}
+
+LTNode* LTFind(LTNode* phead,LTDataType val)
+{
+	assert(phead);
+
+	LTNode* cur = phead->next;
+
+	while (cur != phead)
+	{
+		if (cur->data == val)
+		{
+
+			return cur;
+		}
+		cur = cur->next;
+	}
+
+	return NULL;
+}
+
+//在pos位置之前插入
+void LTInsert(LTNode* pos, LTDataType val)
+{
+	assert(pos);
+
+	LTNode* prev = pos->prev;
+	LTNode* newnode = BuyLTNode(val);
+
+	// prev  newnode  pos
+	newnode->next = pos;
+	pos->prev = newnode;
+	prev->next = newnode;
+	newnode->prev = prev;
+}
+
+//删除pos位置的值
+void LTErase(LTNode* pos)
+{
+	assert(pos);
+
+	//pos  del
+
+	LTNode* posPrev = pos->prev;
+	LTNode* posNext = pos->next;
+
+	pos->next = posNext;
+	posNext->prev = posPrev;
+
+	free(pos);
+
 }
