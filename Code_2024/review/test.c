@@ -1,8 +1,6 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS 1
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <limits.h>
+#include "test.h"
 
 void test_ascii()
 {
@@ -147,14 +145,14 @@ void test_data_type()
 	printf("%zu\n", size);
 
 	printf("-----------------------------------\n");
-	printf("[char]:%zd\n", sizeof(char)); 
-	printf("[_Bool]:%zd\n", sizeof(_Bool)); 
-	printf("[short]:%zd\n", sizeof(short)); 
-	printf("[int]:%zd\n", sizeof(int)); 
-	printf("[long]:%zd\n", sizeof(long)); 
-	printf("[long long]:%zd\n", sizeof(long long)); 
-	printf("[float]:%zd\n", sizeof(float)); 
-	printf("[double]:%zd\n", sizeof(double)); 
+	printf("[char]:%zd\n", sizeof(char));
+	printf("[_Bool]:%zd\n", sizeof(_Bool));
+	printf("[short]:%zd\n", sizeof(short));
+	printf("[int]:%zd\n", sizeof(int));
+	printf("[long]:%zd\n", sizeof(long));
+	printf("[long long]:%zd\n", sizeof(long long));
+	printf("[float]:%zd\n", sizeof(float));
+	printf("[double]:%zd\n", sizeof(double));
 	printf("[long double]:%zd\n", sizeof(long double));
 	printf("-----------------------------------\n");
 
@@ -201,7 +199,7 @@ void test_Arithmetic_operator()
 	printf("%.2f %d %.2lf \n", a, b, c);  //1.0  1 1.5
 	/*整数除法和小数除法*/
 
-	int z = 6 % 4;  
+	int z = 6 % 4;
 	puts("取模运算（取余数）");
 	printf("%d ", z);
 	printf("%d ", -11 % 5);
@@ -232,7 +230,7 @@ void test_assignment_operator()
 	printf("%d %d\n", x, y);
 }
 
-void test_unimal_operator()
+void test_monocular_operators()
 {
 	int a = 10;
 	int b = ++a;	//++的操作数是a，是放在a的前⾯的，就是前置++ 
@@ -240,7 +238,7 @@ void test_unimal_operator()
 
 	int c = 10;
 	c = c + 1;
-	int d = a; 
+	int d = a;
 	printf("a=%d b=%d\n", a, b);
 
 	int x = 10;
@@ -249,7 +247,7 @@ void test_unimal_operator()
 
 	int z = 10;
 	int f = z;
-	z = z + 1; 
+	z = z + 1;
 	printf("z=%d f=%d\n", z, f);
 
 	/*前置--和后置--同理*/
@@ -257,11 +255,11 @@ void test_unimal_operator()
 	int e = (int)3.14;   //强制类型转换
 }
 
-test_scanf_printf()
+void test_scanf_printf()
 {
 	printf("%s will come tonight\n", "zhangsan");
 	printf("There are %d apples\n", 3);
-	printf("%s says it is %d o'clock\n", "lisi", 21); 
+	printf("%s says it is %d o'clock\n", "lisi", 21);
 
 	/*占位符*/
 
@@ -273,6 +271,134 @@ test_scanf_printf()
 
 	printf("%+d\n", 12);
 	printf("%-d\n", -12);
+	printf("Number is %.2f\n", 0.5);
+
+	//如果有 n 个占位符,printf() 的参数就应该有 n + 1 个
+
+	/*占位符列举*/
+	/*%a %A %c %d %e %E %i %f %g %G %hd %ho %hx %hu %Le %n %p %s %zd  ...*/
+
+	printf("%6.2f\n", 0.5);
+	//%*.*f 的两个星号通过 printf() 的两个参数 6 和 2 传⼊
+	printf("%*.*f\n", 6, 2, 0.5);
+	//可以⽤% .[m]s 指定输出的⻓度，其中[m] 代表⼀个数字
+	printf("%.5s\n", "hello world");
+
+
+	int score = 0;
+	printf("请输入成绩：");
+	scanf("%d", &score);		//将⽤⼾从键盘输⼊的整数存⼊变量score
+	printf("成绩是：%d\n", score);
+
+	//scanf("%d%d%f%f", &i, &j, &x, &y);
+	int a = 0;
+	int b = 0;
+	float f = 0.0f;
+	int r = scanf("%d %d %f", &a, &b, &f);
+	printf("a=%d b=%d f=%f\n", a, b, f);
+	printf("r = %d\n", r);
+
+	//%[]  遇到不在集合之中的字符，匹配将会停⽌
+	char tel[11];
+	scanf("%11s\n", tel);  //读够11个字符停止
+	printf("name = %s\n", tel);
+
+	int year = 0;
+	int month = 0;
+	int day = 0;
+	scanf("%d%*c%d%*c%d", &year, &month, &day);   //%*赋值忽略符 --%*c 表示忽略一个字符
+	printf("%d-%d-%d\n", year, month, day);
+}
+
+void test_Branching_looping()
+{
+	int age = 0;
+	scanf("%d", &age);
+	if (age >= 18)
+	{
+		printf("成年\n");
+	}
+	else
+	{
+		printf("未成年\n");
+	}
+
+	int num = 0;
+	scanf("%d", &num);
+	if (num == 0)
+		printf("输入的数字是0\n");
+	else if (num > 0) //这⾥的if 相当于嵌套在els语句中，形成了嵌套结构 
+		printf("输入的数字是正数\n");
+	else
+		printf("输入的数字是负数\n");
+
+	//也可以嵌套使用
+	int num1 = 0;
+	scanf("%d", &num1);
+	if (num1 > 0)
+	{
+		if (num1 % 2 == 0)
+			printf("偶数\n");
+		else
+			printf("奇数\n");
+	}
+	else
+	{
+		printf("非正数\n");
+	}
+
+	/*悬空else问题*/
+	//else 总是跟最接近的 if 匹配
+	int a = 0;
+	int b = 2;
+	if (a == 1)
+		if (b == 2)
+			printf("hehe\n");
+	else
+		printf("haha\n");     //错误示范  改代码什么都不打印
+
+	int a = 0; 
+	int b = 2; 
+	if (a == 1) 
+	{
+		if (b == 2) 
+			printf("hehe\n"); 
+		else 
+			printf("haha\n");	//好的写法避免出错 
+	}
+
+	/*or else和第一个if匹配*/
+
+	int a = 0; 
+	int b = 2; 
+	if (a == 1) 
+	{
+		if (b == 2) 
+			printf("hehe\n");
+	}
+	else 
+	{
+		printf("haha\n");  //好的写法
+	}
+}
+
+void test_relational_operator()
+{
+	//a. 0 表⽰假，所有⾮零值表⽰真
+	//b. = 和 == 不要混淆
+	//c. i < j < k，多个关系运算符不宜连⽤
+	//d. 合理运用 注意逻辑关系
+
+	int age = 0; 
+	scanf("%d", &age); 
+	if (age >= 18 && age <= 36) 
+	{
+		printf("⻘年\n");
+	}
+}
+
+void test_conditional_operator()
+{
 
 }
 
@@ -300,9 +426,18 @@ int main()
 
 	//test_assignment_operator();
 
-	//test_unimal_operator();
+	//test_monocular_operators();
 
-	test_scanf_printf();
+	//test_scanf_printf();
+
+	//test_Branching_looping();
+	
+	//test_relational_operator();
+
+	test_conditional_operator();
+
+
 
 	return 0;
 }
+
