@@ -52,3 +52,5 @@ void test_relational_operator();
 //条件操作符
 void test_conditional_operator();
 
+//逻辑操作符
+void test_logical_operator();

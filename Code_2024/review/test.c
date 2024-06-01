@@ -354,29 +354,29 @@ void test_Branching_looping()
 	if (a == 1)
 		if (b == 2)
 			printf("hehe\n");
-	else
-		printf("haha\n");     //错误示范  改代码什么都不打印
+		else
+			printf("haha\n");     //错误示范  改代码什么都不打印
 
-	int a = 0; 
-	int b = 2; 
-	if (a == 1) 
+	int a2 = 0;
+	int b2 = 2;
+	if (a2 == 1)
 	{
-		if (b == 2) 
-			printf("hehe\n"); 
-		else 
+		if (b2 == 2)
+			printf("hehe\n");
+		else
 			printf("haha\n");	//好的写法避免出错 
 	}
 
-	/*or else和第一个if匹配*/
+	/* or else和第一个if匹配*/
 
-	int a = 0; 
-	int b = 2; 
-	if (a == 1) 
+	int a3 = 0;
+	int b3 = 2;
+	if (a3 == 1)
 	{
-		if (b == 2) 
+		if (b3 == 2)
 			printf("hehe\n");
 	}
-	else 
+	else
 	{
 		printf("haha\n");  //好的写法
 	}
@@ -389,17 +389,95 @@ void test_relational_operator()
 	//c. i < j < k，多个关系运算符不宜连⽤
 	//d. 合理运用 注意逻辑关系
 
-	int age = 0; 
-	scanf("%d", &age); 
-	if (age >= 18 && age <= 36) 
+	int age = 0;
+	scanf("%d", &age);
+	if (age >= 18 && age <= 36)
 	{
-		printf("⻘年\n");
+		printf("青年\n");
 	}
 }
 
 void test_conditional_operator()
 {
+	// exp1 ? exp2 : exp3
+	int a = 20;
+	int b = 10;
+	b = a > 5 ? 3 : -3;
+	printf("%d\n", b);
 
+	scanf("%d %d", &a, &b);
+	int m = a > b ? a : b;
+	printf("%d\n", m);
+}
+
+void test_logical_operator()
+{
+	// !非 &&与 ||或
+	int flag = 0;
+	if (!flag)
+	{
+		printf("do something\n");
+	}
+
+	int month = 4;
+	if (month >= 3 && month <= 5)
+	{
+		printf("春季\n");
+	}
+
+	scanf("%d", &month);
+	if (month == 12 || month == 1 || month == 2)
+	{
+		printf("冬季\n");
+	}
+
+	// 闰年
+	//（year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
+
+	// 短路求值
+	/* 对于&& 操作符来说，左边操作数的结果是0的时候，右边操作数就不再执⾏。*/
+
+	// ||操作符的左操作数的结果不为 0 时，就无需执行右操作数
+
+}
+
+void test_if_else_switch()
+{
+	//switch (expression)
+	//{
+	//case value1: statement
+	//	break;
+	//case value2: statement
+	//	break;
+	//default: statement
+	//	break;
+	//}
+
+	/* expression、case后面的必须为整形表达式*/
+
+	int n = 0;
+	scanf("%d", &n);
+	if (n % 3 == 0)
+		printf("整除，余数为0\n");
+	else if (n % 3 == 1)
+		printf("余数是1\n");
+	else
+		printf("余数是2\n");
+
+	int n2 = 0;
+	scanf("%d", &n);
+	switch (n2 % 3)
+	{
+	case 0:
+		printf("整除，余数为0\n");
+		break;
+	case 1:
+		printf("余数是1\n");
+		break;
+	case 2:
+		printf("余数是2\n");
+		break;
+	}
 }
 
 int main()
@@ -431,12 +509,14 @@ int main()
 	//test_scanf_printf();
 
 	//test_Branching_looping();
-	
+
 	//test_relational_operator();
 
-	test_conditional_operator();
+	//test_conditional_operator();
 
+	//test_logical_operator();
 
+	test_if_else_switch();
 
 	return 0;
 }
