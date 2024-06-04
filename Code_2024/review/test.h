@@ -1,7 +1,9 @@
 #pragma once
 
 #include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
+#include <windows.h>
 #include <limits.h>
 
 // ascii码
@@ -72,3 +74,12 @@ void test_nested_loops();
 
 // goto
 void test_goto();
+
+//数组
+void test_array();
+
+//多个字符从两端向中间移动
+void test_array_to_middle();
+
+//二分查找
+void test_binary_search();

@@ -587,6 +587,92 @@ next:
 	/* 多层for循环快速跳出*/
 }
 
+void test_array()
+{
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 }; 
+	int i = 0;
+	for (i = 0; i < 10; i++)
+	{
+		scanf("%d", &arr[i]);
+	} 
+	
+	for (i = 0; i < 10; i++) 
+	{
+		printf("%d ", arr[i]);
+	}
+
+	int arr1[10] = { 1,2,3,4,5,6,7,8,9,10 }; 
+	int i1 = 0;
+	for (i1 = 0; i1 < 10; i1++)
+	{
+		printf("&arr[%d] = %p\n ", i1, &arr1[i1]);
+	}
+
+	int arr2[3][5] = { 1,2,3,4,5, 2,3,4,5,6, 3,4,5,6,7 }; 
+	printf("%d\n", arr2[2][4]);
+
+	//int n = 1 + 5; 
+	//int arr3[n];	c99
+}
+
+void test_array_to_middle()
+{
+	char arr1[] = "....welcome...."; 
+	char arr2[] = "###############"; 
+	int left = 0;
+	int right = (int)strlen(arr1) - 1; 
+	printf("%s\n", arr2); 
+	while (left <= right)
+	{
+		Sleep(1000);
+		arr2[left] = arr1[left];         
+		arr2[right] = arr1[right];         
+		left++;
+		right--; 
+		printf("%s\n", arr2);
+	}
+}
+
+void test_binary_search()
+{
+	int arr[] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14 };
+	int left = 0, right = sizeof(arr) / sizeof(arr[0]) - 1;
+	int key = 12;
+	int flag = 0, cnt = 0;
+	while (left <= right)
+	{
+
+		int mid = left + (right - left) / 2;
+
+		if (arr[mid] < key)
+		{
+			left = mid + 1;
+			cnt++;
+		}
+		else if (arr[mid] > key)
+		{
+			right = mid - 1;
+			cnt++;
+		}
+		else
+		{
+			flag = 1;
+			cnt++;
+			break;
+		}
+	}
+
+	if (flag == 1)
+	{
+		printf("找到了%d,下标为:%d\n", key, right);
+		printf("查找次数为：%d\n", cnt);
+	}
+	else
+	{
+		printf("你要找的%d,不存在\n",key);
+	}
+}
+
 int main()
 {
 	//test_ascii();
@@ -634,6 +720,12 @@ int main()
 	//test_nested_loops();
 
 	//test_goto();
+
+	//test_array();
+
+	//test_array_to_middle();
+
+	test_binary_search();
 
 	return 0;
 }
