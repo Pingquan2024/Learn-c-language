@@ -480,6 +480,113 @@ void test_if_else_switch()
 	}
 }
 
+void test_while()
+{
+	int i = 1;
+	while (i <= 10)
+	{
+		printf("%d ", i);
+		i = i + 1;
+	}
+	printf("\n");
+
+
+	i = 1024;
+	while (i)
+	{
+		printf("%d ", i % 10);
+		i /= 10;
+	}
+}
+
+void test_for()
+{
+	// 1.表达式1：初始化
+	// 2.表达式2：判断
+	// 3.表达式3：调整
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d ", i);
+	}
+	printf("\n");
+
+	int i = 0;
+	int sum = 0;
+	for (i = 1; i <= 100; i++)
+	{
+		if (i % 3 == 0)
+			sum += i;
+	}
+	printf("%d\n", sum);
+}
+
+void test_do_while()
+{
+	int i = 1;
+	do
+	{
+		printf("%d ", i);
+		i++;
+	} while (i <= 10);
+
+	printf("\n");
+
+	int n = 100;
+	int cnt = 0;
+	do
+	{
+		cnt++;
+		n = n / 10;
+	} while (n);
+	printf("%d \n", cnt);
+}
+
+/* break和continue语句 */
+// break的作用是用于永久的的终止循环
+// continue的作用是跳过本次循环continue后边的代码
+
+void test_nested_loops()
+{
+	for (int i = 100; i <= 200; i++)
+	{
+		//判断是否为素数
+		//循环产生2~i-1之间的数字
+		int flag = 1;
+		for (int j = 2; j < i; j++)
+		{
+			if (i % j == 0)
+			{
+				flag = 0;
+				break;
+			}
+		}
+		if (flag == 1)
+		{
+			printf("%d ", i);
+		}
+	}
+}
+
+void test_goto()
+{
+	printf("hello\n");
+	goto next;
+	printf("ahhaha\n");
+
+next:
+	printf("跳过了ahaha的打印\n");
+
+//	if (err)
+//	{
+//		goto error;
+//	}
+//
+//error:
+//	//解决
+
+	/* 多层for循环快速跳出*/
+}
+
 int main()
 {
 	//test_ascii();
@@ -516,7 +623,17 @@ int main()
 
 	//test_logical_operator();
 
-	test_if_else_switch();
+	//test_if_else_switch();
+
+	//test_while();
+
+	//test_for();
+
+	//test_do_while();
+
+	//test_nested_loops();
+
+	//test_goto();
 
 	return 0;
 }
