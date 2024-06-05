@@ -673,6 +673,26 @@ void test_binary_search()
 	}
 }
 
+/* 调试 */
+
+int Fact(int n)
+{
+	if (n == 0)
+	{
+		return 1;
+	}
+	else
+	{
+		return n * Fact(n - 1);
+	}
+}
+
+void test_recursive()
+{
+	int ret = Fact(10);
+	printf("%d\n", ret);
+}
+
 int main()
 {
 	//test_ascii();
@@ -725,7 +745,10 @@ int main()
 
 	//test_array_to_middle();
 
-	test_binary_search();
+	//test_binary_search();
+
+	test_recursive();
+
 
 	return 0;
 }

@@ -83,3 +83,6 @@ void test_array_to_middle();
 
 //¶ş·Ö²éÕÒ
 void test_binary_search();
+
+//µİ¹é
+void test_recursive();
