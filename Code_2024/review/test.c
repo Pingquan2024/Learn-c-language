@@ -576,39 +576,39 @@ void test_goto()
 next:
 	printf("跳过了ahaha的打印\n");
 
-//	if (err)
-//	{
-//		goto error;
-//	}
-//
-//error:
-//	//解决
+	//	if (err)
+	//	{
+	//		goto error;
+	//	}
+	//
+	//error:
+	//	//解决
 
-	/* 多层for循环快速跳出*/
+		/* 多层for循环快速跳出*/
 }
 
 void test_array()
 {
-	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 }; 
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
 	int i = 0;
 	for (i = 0; i < 10; i++)
 	{
 		scanf("%d", &arr[i]);
-	} 
-	
-	for (i = 0; i < 10; i++) 
+	}
+
+	for (i = 0; i < 10; i++)
 	{
 		printf("%d ", arr[i]);
 	}
 
-	int arr1[10] = { 1,2,3,4,5,6,7,8,9,10 }; 
+	int arr1[10] = { 1,2,3,4,5,6,7,8,9,10 };
 	int i1 = 0;
 	for (i1 = 0; i1 < 10; i1++)
 	{
 		printf("&arr[%d] = %p\n ", i1, &arr1[i1]);
 	}
 
-	int arr2[3][5] = { 1,2,3,4,5, 2,3,4,5,6, 3,4,5,6,7 }; 
+	int arr2[3][5] = { 1,2,3,4,5, 2,3,4,5,6, 3,4,5,6,7 };
 	printf("%d\n", arr2[2][4]);
 
 	//int n = 1 + 5; 
@@ -617,18 +617,18 @@ void test_array()
 
 void test_array_to_middle()
 {
-	char arr1[] = "....welcome...."; 
-	char arr2[] = "###############"; 
+	char arr1[] = "....welcome....";
+	char arr2[] = "###############";
 	int left = 0;
-	int right = (int)strlen(arr1) - 1; 
-	printf("%s\n", arr2); 
+	int right = (int)strlen(arr1) - 1;
+	printf("%s\n", arr2);
 	while (left <= right)
 	{
 		Sleep(1000);
-		arr2[left] = arr1[left];         
-		arr2[right] = arr1[right];         
+		arr2[left] = arr1[left];
+		arr2[right] = arr1[right];
 		left++;
-		right--; 
+		right--;
 		printf("%s\n", arr2);
 	}
 }
@@ -669,7 +669,7 @@ void test_binary_search()
 	}
 	else
 	{
-		printf("你要找的%d,不存在\n",key);
+		printf("你要找的%d,不存在\n", key);
 	}
 }
 
@@ -692,6 +692,66 @@ void test_recursive()
 	int ret = Fact(10);
 	printf("%d\n", ret);
 }
+
+void test1()
+{
+	int n = 10;
+	int m = 20;
+	int* p = &n;
+	*p = 20;	// √     
+	p = &m;		// √ 
+}
+
+void test2()
+{
+	//代码2 
+	int n = 10;
+	int m = 20;
+	const int* p = &n;
+	// *p = 20;	 // ×    
+	p = &m;		 // √ 
+}
+
+void test3()
+{
+	int n = 10;
+	int m = 20;
+	int* const p = &n;
+	*p = 20;	    // √
+	// p = &m;		// ×
+}
+
+void test4()
+{
+	int n = 10;
+	int m = 20;
+	int const* const p = &n;
+	// *p = 20; // ×    
+	// p = &m;  // ×
+}
+
+	/*模拟strlen*/
+size_t mystrlen(const char* str)
+{
+	assert(str);
+	int count = 0;
+	while (*str)
+	{
+		count++;
+		str++;
+	}
+
+	return count;
+}
+
+void test_pointer()
+{
+	test1();
+	test2();
+	test3();
+	test4();
+}
+
 
 int main()
 {
@@ -747,7 +807,9 @@ int main()
 
 	//test_binary_search();
 
-	test_recursive();
+	//test_recursive();
+
+	test_pointer();
 
 
 	return 0;

@@ -86,3 +86,9 @@ void test_binary_search();
 
 //递归
 void test_recursive();
+
+// const修饰的指针变量
+void test_pointer();
+
+// 模拟strlen
+size_t mystrlen(const char* str);
