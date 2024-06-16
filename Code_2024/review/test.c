@@ -730,7 +730,7 @@ void test4()
 	// p = &m;  // ×
 }
 
-	/*模拟strlen*/
+/*模拟strlen*/
 size_t mystrlen(const char* str)
 {
 	assert(str);
@@ -744,15 +744,38 @@ size_t mystrlen(const char* str)
 	return count;
 }
 
-void test_pointer()
+void test5(int arr[])
 {
-	test1();
-	test2();
-	test3();
-	test4();
+	int sz2 = sizeof(arr) / sizeof(arr[0]);
+	printf("sz2 = %d\n", sz2);
 }
 
+void test6(int arr[])//参数写成数组形式，本质上还是指针 
+{
+	printf("%d\n", sizeof(arr));
+}
 
+void test7(int *arr)//参数写成数组形式，本质上还是指针 
+{
+	printf("%d\n", sizeof(arr));
+}
+
+void test_pointer()
+{
+	//test1();
+	//test2();
+	//test3();
+	//test4();
+
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int sz1 = sizeof(arr) / sizeof(arr[0]);
+	printf("sz1 = %d\n", sz1);				// 10
+	test5(arr);								// 1
+	test6(arr);								// 4
+	test7(arr);								// 4
+}
+
+#if 1
 int main()
 {
 	//test_ascii();
@@ -814,4 +837,5 @@ int main()
 
 	return 0;
 }
+#endif // !1
 
