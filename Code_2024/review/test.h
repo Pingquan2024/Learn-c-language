@@ -93,3 +93,12 @@ void test_pointer();
 
 // 模拟strlen
 size_t mystrlen(const char* str);
+
+// 二维数组传参
+void test_two_dimensional_array();
+
+// 函数指针
+void test_function_pointer();
+
+// 函数指针数组
+void test_function_pointer_array();

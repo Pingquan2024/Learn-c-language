@@ -750,12 +750,12 @@ void test5(int arr[])
 	printf("sz2 = %d\n", sz2);
 }
 
-void test6(int arr[])//参数写成数组形式，本质上还是指针 
+void test6(int arr[])	// 参数写成数组形式，本质上还是指针 
 {
 	printf("%d\n", sizeof(arr));
 }
 
-void test7(int *arr)//参数写成数组形式，本质上还是指针 
+void test7(int* arr)	// 参数写成数组形式，本质上还是指针 
 {
 	printf("%d\n", sizeof(arr));
 }
@@ -773,6 +773,96 @@ void test_pointer()
 	test5(arr);								// 1
 	test6(arr);								// 4
 	test7(arr);								// 4
+}
+
+void test01(int  a[3][5], int r, int c)
+{
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < r; i++)
+	{
+		for (j = 0; j < c; j++)
+		{
+			printf("%d ", a[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void test02(int(*p)[5], int r, int c)	// p 数组指针
+{
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < r; i++)
+	{
+		for (j = 0; j < c; j++)
+		{
+			printf("%d ", *(*(p + i) + j));
+		}
+		printf("\n");
+	}
+}
+
+
+void test_two_dimensional_array()
+{
+	int arr[3][5] = { {1,2,3,4,5}, {2,3,4,5,6},{3,4,5,6,7} };
+	test01(arr, 3, 5);
+	printf("\n");
+	test02(arr, 3, 5);
+}
+
+
+/* 函数名就是函数的地址 */
+
+void test_function_pointer()
+{
+	//int(*pf)(int x, int y) = Add;
+	int(*pf)(int, int) = Add;
+	printf("%d\n", (*pf)(2, 3));
+	printf("%d\n", pf(3, 5));			// C语言会隐式地对pf3进行解引用
+}
+
+int Mul(int a, int b)
+{
+	return a * b;
+}
+
+int Div(int a, int b)
+{
+	return a / b;
+}
+
+void test_function_pointer_array()
+{
+	int x, y;
+	int input = 1;
+	int ret = 0;
+	int(*p[5])(int x, int y) = { 0, Add, Sub, Mul, Div }; // 转移表 
+	do {
+		printf("*************************\n");
+		printf("  1:add           2:sub  \n");
+		printf("  3:mul           4:div  \n");
+		printf("  0:exit                 \n");
+		printf("*************************\n");
+		printf("请选择：");
+		scanf("%d", &input);
+		if ((input <= 4 && input >= 1))
+		{
+			printf("输入操作数：");
+			scanf("%d %d", &x, &y);
+			ret = (p[input])(x, y);
+			printf("ret = %d\n", ret);
+		}
+		else if (input == 0)
+		{
+			printf("退出计算器\n");
+		}
+		else
+		{
+			printf("输入有误\n");
+		}
+	} while (input);
 }
 
 #if 1
@@ -832,8 +922,13 @@ int main()
 
 	//test_recursive();
 
-	test_pointer();
+	//test_pointer();
 
+	//test_two_dimensional_array();
+
+	//test_function_pointer();
+
+	test_function_pointer_array();
 
 	return 0;
 }
