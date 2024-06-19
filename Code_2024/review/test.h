@@ -102,3 +102,6 @@ void test_function_pointer();
 
 // 函数指针数组
 void test_function_pointer_array();
+
+// 模拟qsort
+void test_myqsort();
